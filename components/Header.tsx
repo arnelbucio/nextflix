@@ -1,4 +1,8 @@
-type Props = {};
+import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
+import { BellIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
+import Image from "next/image";
+import defaultAvatar from "../public/default-avatar.jpg";
 
 const NetflixLogo = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -15,7 +19,7 @@ const NetflixLogo = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-function Header({}: Props) {
+function Header() {
   return (
     <header>
       <div className='flex items-center space-x-2 md:space-x-10'>
@@ -30,7 +34,14 @@ function Header({}: Props) {
           <li className='headerLink'>Browse by Languages</li>
         </ul>
       </div>
-      <div></div>
+
+      <div className='flex items-center space-x-4 text-sm font-light'>
+        <MagnifyingGlassIcon className='hidden sm:inline h-6 w-6' />
+        <BellIcon className='hidden sm:inline h-6 w-6' />
+        <Link href='#'>
+          <Image src={defaultAvatar} alt='avatar' height={40} />
+        </Link>
+      </div>
     </header>
   );
 }
