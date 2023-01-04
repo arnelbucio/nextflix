@@ -59,7 +59,12 @@ function Header() {
         <MagnifyingGlassIcon className='hidden sm:inline h-6 w-6' />
         <BellIcon className='hidden sm:inline h-6 w-6' />
         <Link href='#'>
-          <Image src={defaultAvatar} alt='avatar' height={40} />
+          <Image
+            src={defaultAvatar}
+            alt='avatar'
+            height={32}
+            className='rounded-[4px]'
+          />
         </Link>
       </div>
     </header>
