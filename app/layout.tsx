@@ -14,7 +14,7 @@ export default function RootLayout({
       */}
       <head />
       <body>
-        <div className='relative h-screen lg:h-[140vh]'>
+        <div className='relative h-screen bg-gradient-to-b lg:h-[140vh]'>
           <Header />
           {children}
         </div>
