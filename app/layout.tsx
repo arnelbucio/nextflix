@@ -14,8 +14,10 @@ export default function RootLayout({
       */}
       <head />
       <body>
-        <Header />
-        {children}
+        <div className='relative h-screen lg:h-[140vh]'>
+          <Header />
+          {children}
+        </div>
       </body>
     </html>
   );
