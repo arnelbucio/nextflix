@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import NetflixLogo from "../../components/NetflixLogo";
+import useAuth from "../../hooks/useAuth";
 import loginBg from "../../public/login-bg.jpg";
 
 type Inputs = {
@@ -13,12 +14,19 @@ type Inputs = {
 
 function LoginPage() {
   const [login, setLogin] = useState(false);
+  const { signIn, signUp } = useAuth();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<Inputs> = async ({ email, password }) => {
+    if (login) {
+      await signIn(email, password);
+    } else {
+      await signUp(email, password);
+    }
+  };
 
   return (
     <div className='relative flex h-screen w-screen max-w-full flex-col bg-black md:items-center md:justify-center md:bg-transparent'>
@@ -72,13 +80,19 @@ function LoginPage() {
         <button
           type='submit'
           className='w-full rounded bg-[#e50914] py-3 font-semibold'
+          onClick={() => setLogin(true)}
         >
           Sign In
         </button>
 
         <div className='text-[gray]'>
           New to Netflix?{" "}
-          <button className='text-white hover:underline'>Sign up now</button>
+          <button
+            className='text-white hover:underline'
+            onClick={() => setLogin(false)}
+          >
+            Sign up now
+          </button>
         </div>
       </form>
     </div>

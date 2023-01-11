@@ -1,3 +1,4 @@
+import { AuthProvider } from "../hooks/useAuth";
 import "../styles/globals.css";
 
 export default function RootLayout({
@@ -13,9 +14,11 @@ export default function RootLayout({
       */}
       <head />
       <body>
-        <div className='relative h-screen bg-gradient-to-b lg:h-[140vh]'>
-          {children}
-        </div>
+        <AuthProvider>
+          <div className='relative h-screen bg-gradient-to-b lg:h-[140vh]'>
+            {children}
+          </div>
+        </AuthProvider>
       </body>
     </html>
   );

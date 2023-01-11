@@ -6,9 +6,11 @@ import Link from "next/link";
 import Image from "next/image";
 import defaultAvatar from "../public/default-avatar.jpg";
 import NetflixLogo from "./NetflixLogo";
+import useAuth from "../hooks/useAuth";
 
 function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const { logOut } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -44,14 +46,15 @@ function Header() {
       <div className='flex items-center space-x-4 text-sm font-light'>
         <MagnifyingGlassIcon className='hidden h-6 w-6 sm:inline' />
         <BellIcon className='hidden h-6 w-6 sm:inline' />
-        <Link href='#'>
-          <Image
-            src={defaultAvatar}
-            alt='avatar'
-            height={32}
-            className='rounded-[4px]'
-          />
-        </Link>
+        {/* <Link href='#'> */}
+        <Image
+          src={defaultAvatar}
+          alt='avatar'
+          height={32}
+          className='rounded-[4px]'
+          onClick={logOut}
+        />
+        {/* </Link> */}
       </div>
     </header>
   );
